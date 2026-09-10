@@ -416,6 +416,7 @@ Item {
                     id: labelArtMask
                     anchors.fill: labelArt
                     radius: width / 2
+                    layer.enabled: true
                     visible: false
                   }
 
@@ -546,6 +547,7 @@ Item {
                     id: cardArtMask
                     anchors.fill: cardArt
                     radius: width / 2
+                    layer.enabled: true
                     visible: false
                   }
 
