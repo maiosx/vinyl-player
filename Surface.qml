@@ -295,19 +295,6 @@ Item {
           anchors.verticalCenter: parent.verticalCenter
           anchors.verticalCenterOffset: Math.round(parent.height * 0.04)
 
-          // Soft contact shadow so the record actually sits on the blur.
-          Rectangle {
-            id: contact
-            width: disc.width * 0.86
-            height: 36
-            radius: 18
-            color: "#66000000"
-            anchors.horizontalCenter: disc.horizontalCenter
-            anchors.top: disc.bottom
-            anchors.topMargin: -18
-            z: 0
-          }
-
           Item {
             id: disc
             width: root.discSize
