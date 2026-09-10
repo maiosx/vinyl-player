@@ -18,8 +18,19 @@ Item {
   property bool playerOn: true
   property bool playing: false
 
-  implicitWidth: 28
-  implicitHeight: bar ? (bar.barSize || 26) : 26
+  // Icon scale — 1x for standard 1080p bars, 2x to double the glyph size on
+  // displays where the default reads too small (e.g. a 1080p panel viewed
+  // up close, or a bar theme with an oversized barSize). Picks up
+  // settings.iconScale if the bar framework supplies one; otherwise edit
+  // defaultIconScale below and `omarchy restart shell`.
+  property int defaultIconScale: 1
+  readonly property int iconScale: {
+    var s = settings && settings.iconScale ? Number(settings.iconScale) : defaultIconScale
+    return (s === 2) ? 2 : 1
+  }
+
+  implicitWidth: 28 * iconScale
+  implicitHeight: bar ? ((bar.barSize || 26) * (iconScale > 1 ? iconScale : 1)) : 26 * iconScale
 
   readonly property color accent: bar && bar.accent ? bar.accent : "#1DB954"
   readonly property color fg: bar && bar.foreground ? bar.foreground : "#e8e8e8"
@@ -64,7 +75,7 @@ Item {
 
   Rectangle {
     anchors.fill: parent
-    radius: 6
+    radius: 6 * root.iconScale
     color: root.playerOn ? root.accent : "transparent"
     opacity: root.playerOn ? 0.22 : 0
     Behavior on opacity { NumberAnimation { duration: 120 } }
@@ -72,8 +83,8 @@ Item {
 
   Item {
     id: glyph
-    width: 16
-    height: 16
+    width: 16 * root.iconScale
+    height: 16 * root.iconScale
     anchors.centerIn: parent
     opacity: root.playerOn ? 1 : 0.45
     rotation: 0
@@ -89,13 +100,13 @@ Item {
       anchors.fill: parent
       radius: width / 2
       color: "#14110f"
-      border.width: 1.5
+      border.width: 1.5 * root.iconScale
       border.color: root.playing ? root.accent : root.fg
     }
     Rectangle {
-      width: 5
-      height: 5
-      radius: 2.5
+      width: 5 * root.iconScale
+      height: 5 * root.iconScale
+      radius: width / 2
       anchors.centerIn: parent
       color: root.playing ? root.accent : root.fg
     }

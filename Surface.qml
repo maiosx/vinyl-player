@@ -498,7 +498,7 @@ Item {
                 Rectangle {
                   width: 36
                   height: 36
-                  radius: 8
+                  radius: width / 2
                   color: "#22ffffff"
                   clip: true
 
