@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "vinyl.player",
+  "name": "Vinyl Player",
+  "version": "1.0.0",
+  "author": "maiosx",
+  "license": "MIT",
+  "description": "A large spinning vinyl on the Omarchy desktop, sitting on Wallpaper Blur, with Spotmarchy transport controls along the bottom of the record.",
+  "repository": "https://github.com/maiosx/vinyl-player",
+  "keywords": ["vinyl", "spotify", "mpris", "desktop", "quickshell", "omarchy", "wallpaper-blur"],
+  "kinds": ["panel", "bar-widget"],
+  "keepLoaded": true,
+  "entryPoints": {
+    "panel": "Surface.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Vinyl Player",
+    "description": "Toggle the large desktop vinyl. Left-click opens it, right-click plays and pauses.",
+    "category": "Media",
+    "aliases": ["vinyl", "record", "spotify", "now-playing", "turntable"],
+    "allowMultiple": false,
+    "defaultSection": "center"
+  }
+}
