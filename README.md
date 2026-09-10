@@ -118,6 +118,12 @@ Properties at the top of `Surface.qml`:
 | `hideWhenClosed` | Hide the vinyl entirely when nothing is playing |
 | `accent` | Fallback accent when album colour has not been measured |
 
+Properties at the top of `BarWidget.qml`:
+
+| | |
+|---|---|
+| `defaultIconScale` | `1` or `2` — doubles the bar record's size for displays where the default 16px glyph reads too small. Used automatically if the bar framework passes `settings.iconScale`; otherwise this is the value. |
+
 Edit, then `omarchy restart shell`.
 
 ## The album cover

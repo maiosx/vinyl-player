@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.Mpris
@@ -382,21 +383,40 @@ Item {
                 anchors.centerIn: parent
 
                 Rectangle {
+                  id: labelRing
                   anchors.fill: parent
                   radius: width / 2
                   color: "#e8dcc8"
                   border.width: 2
                   border.color: "#1a120c"
-                  clip: true
 
                   Image {
+                    id: labelArt
                     anchors.fill: parent
                     anchors.margins: 3
                     source: root.artSourceUrl
                     fillMode: Image.PreserveAspectCrop
                     asynchronous: true
                     cache: true
-                    visible: status === Image.Ready
+                    visible: false
+                  }
+
+                  // Rectangle.clip only clips to the item's bounding box, not
+                  // its rounded corners, so the raw Image above is hidden and
+                  // this masked copy (via MultiEffect) is shown instead.
+                  MultiEffect {
+                    anchors.fill: labelArt
+                    source: labelArt
+                    maskEnabled: true
+                    maskSource: labelArtMask
+                    visible: labelArt.status === Image.Ready
+                  }
+
+                  Rectangle {
+                    id: labelArtMask
+                    anchors.fill: labelArt
+                    radius: width / 2
+                    visible: false
                   }
 
                   Text {
@@ -500,15 +520,33 @@ Item {
                   height: 36
                   radius: width / 2
                   color: "#22ffffff"
-                  clip: true
 
                   Image {
+                    id: cardArt
                     anchors.fill: parent
                     source: root.artSourceUrl
                     fillMode: Image.PreserveAspectCrop
                     asynchronous: true
                     cache: true
-                    visible: status === Image.Ready
+                    visible: false
+                  }
+
+                  // Rectangle.clip only clips to the item's bounding box, not
+                  // its rounded corners, so the raw Image above is hidden and
+                  // this masked copy (via MultiEffect) is shown instead.
+                  MultiEffect {
+                    anchors.fill: cardArt
+                    source: cardArt
+                    maskEnabled: true
+                    maskSource: cardArtMask
+                    visible: cardArt.status === Image.Ready
+                  }
+
+                  Rectangle {
+                    id: cardArtMask
+                    anchors.fill: cardArt
+                    radius: width / 2
+                    visible: false
                   }
 
                   Text {
