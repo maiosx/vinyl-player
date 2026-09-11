@@ -1,4 +1,5 @@
 # Vinyl Player
+<img width="2560" height="1440" alt="Preview" src="Preview.png" />
 
 A large playing vinyl for the [Omarchy](https://omarchy.org) desktop.
 
